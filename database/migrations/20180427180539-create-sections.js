@@ -1,21 +1,25 @@
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    queryInterface.createTable('Projetos', {
+    queryInterface.createTable('Sections', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      UserId: {
+      ProjectId: {
         type: DataTypes.INTEGER,
-        references: { model: 'Users', key: 'id' },
+        references: { model: 'Projects', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
       },
       title: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       createdAt: {
@@ -30,6 +34,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    queryInterface.dropTable('Projetos');
+    queryInterface.dropTable('Sections');
   },
 };

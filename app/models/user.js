@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-    User.hasMany(models.Projeto);
+    User.hasMany(models.Project);
   };
 
   return User;
