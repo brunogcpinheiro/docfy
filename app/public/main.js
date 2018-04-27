@@ -3,4 +3,4 @@ setTimeout(() => {
   if (alert) {
     alert.className += ' alert-hidden';
   }
-}, 2000);
+}, 3000);
