@@ -7,10 +7,10 @@
         <h1><a href="/app/dashboard">Docfy</a></h1>
         <div class="user-info">
           <p class="welcome">
-            Bem vindo<br>
+            Bem vindo,<br>
             <strong>{{ username }}</strong>
           </p>
-          <a href="signin.html" class="btn btn-danger">
+          <a href="/signout" class="btn btn-danger">
             <img src="/img/signout.svg">
           </a>
         </div>
@@ -30,11 +30,11 @@
           <nav>
             <div class="sessions">
               {% for section in sections %}
-                <a href="/app/projects/{{ activeProject }}/sections/{{ section.id }}">{{ section.title }}</a>
+                <a href="/app/projects/{{ activeProject }}/sections/{{ section.id }}" class="{% if section.id == activeProject %}active{% endif %}">{{ section.title }}</a>
               {% endfor %}
             </div>
 
-            <a href="" data-modal-open="#new-section">ADICIONAR SEÇÃO</a>
+            <a href="#" data-modal-open="#new-section">ADICIONAR SEÇÃO</a>
           </nav>
 
           <div class="modal" id="new-section">
@@ -49,14 +49,13 @@
               <a href="#" data-modal-close="#new-section">CANCELAR</a>
             </form>
           </div>
-
-          {# <article>
+          <article>
             <div class="project-header">
-              <h1>Banco de dados</h1>
+              <h1>{{ currentSection.title }}</h1>
               <a href="">Remover seção</a>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </article> #}
+            <p>{{ currentSection.content }}</p>
+          </article>
         </section>
       </div>
     </section>
