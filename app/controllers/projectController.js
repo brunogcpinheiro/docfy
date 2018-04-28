@@ -1,7 +1,7 @@
-const { Project } = require('../models');
+const { Project, Section } = require('../models');
 
 module.exports = {
-  async create(req, res, next) {
+  async store(req, res, next) {
     try {
       await Project.create({
         ...req.body, UserId: req.session.user.id,
@@ -9,6 +9,24 @@ module.exports = {
 
       req.flash('success', 'Projeto criado com sucesso.');
       return res.redirect('/app/dashboard');
+    } catch (err) {
+      return next(err);
+    }
+  },
+
+  async show(req, res, next) {
+    try {
+      const username = await req.session.user.name;
+
+      const sections = await Section.findAll({
+        where: { ProjectId: req.params.id },
+      });
+
+      return res.render('projects/show', {
+        username,
+        sections,
+        activeProject: req.params.id,
+      });
     } catch (err) {
       return next(err);
     }
