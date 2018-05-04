@@ -35,4 +35,14 @@ module.exports = {
       return next(err);
     }
   },
+  async destroy(req, res, next) {
+    try {
+      await Section.destroy({ where: { id: req.params.id } });
+
+      req.flash('success', 'Seção removido com sucesso.');
+      return res.redirect(`/app/projects/${req.params.projectId}`);
+    } catch (err) {
+      return next(err);
+    }
+  },
 };

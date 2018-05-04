@@ -20,9 +20,11 @@
     <section id="main">
       <div class="container">
         <header>
-          <h2>Exemplo de projeto</h2>
+          <h2>{{ project.title }}</h2>
           <div class="addon">
-            <a href="" class="btn btn-danger">Excluir projeto</a>
+            <form action="/app/projects/{{ activeProject }}?_method=DELETE" method="POST">
+              <button type="submit">REMOVER PROJETO</button>
+            </form>
           </div>
         </header>
 
@@ -49,13 +51,7 @@
               <a href="#" data-modal-close="#new-section">CANCELAR</a>
             </form>
           </div>
-          <article>
-            <div class="project-header">
-              <h1>{{ currentSection.title }}</h1>
-              <a href="">Remover seção</a>
-            </div>
-            <p>{{ currentSection.content }}</p>
-          </article>
+          {% include "partials/section.njk" %}
         </section>
       </div>
     </section>
